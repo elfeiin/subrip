@@ -3,6 +3,9 @@
 Library for manipulating .srt subtitle files.
 
 ## Get Started
+
+Add `subrip = { git = "https://github.com/elein727/subrip.git" }` to your dependencies in `Cargo.toml`.
+
 ```rs
 use subrip::Subtitles;
 
