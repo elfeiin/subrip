@@ -47,7 +47,6 @@ impl<'src_buf> Subtitles<'src_buf> {
                         if split[1] != "-->" {
                            return Err(Error::UnexpectedToken(line_number));
                         }
-                        println!["{split:#?}"];
                         curr_entry.start = Some(split[0]);
                         curr_entry.end = Some(split[2]);
                      }
