@@ -81,7 +81,7 @@ impl Display for Timestamp {
    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
       write![
          f,
-         "{}:{}:{},{}",
+         "{:02}:{:02}:{:02},{:03}",
          self.hours, self.minutes, self.seconds, self.milliseconds
       ]
    }
