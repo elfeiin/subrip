@@ -29,6 +29,10 @@ impl<'src_buf> Builder<'src_buf> {
       let lines = self.lines;
       Ok(Entry { start, end, lines })
    }
+
+   pub fn is_empty(&self) -> bool {
+      self.start.is_none() && self.end.is_none() && self.lines.is_empty()
+   }
 }
 
 #[derive(Debug, PartialEq, Eq)]

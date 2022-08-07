@@ -39,16 +39,20 @@ impl<'src_buf> Subtitles<'src_buf> {
                ParseState::Timing => {
                   let split = line.split_whitespace().collect::<Vec<&str>>();
                   match split.len().cmp(&3) {
-                     std::cmp::Ordering::Less => return Err(Error::MissingTimestamp(line_number)),
+                     std::cmp::Ordering::Less => {
+                        return Err(Error::MissingTimestamp(line_number));
+                     }
+
                      std::cmp::Ordering::Equal => {
                         if split[1] != "-->" {
                            return Err(Error::UnexpectedToken(line_number));
                         }
-                        curr_entry.start = split[0].into();
-                        curr_entry.end = split[2].into();
+                        println!["{split:#?}"];
+                        curr_entry.start = Some(split[0]);
+                        curr_entry.end = Some(split[2]);
                      }
                      std::cmp::Ordering::Greater => {
-                        return Err(Error::UnexpectedToken(line_number))
+                        return Err(Error::UnexpectedToken(line_number));
                      }
                   }
                   state = ParseState::Lines;
@@ -64,7 +68,9 @@ impl<'src_buf> Subtitles<'src_buf> {
                }
             },
             None => {
-               entries.push(curr_entry.build()?);
+               if !curr_entry.is_empty() {
+                  entries.push(curr_entry.build()?);
+               }
                break;
             }
          }
