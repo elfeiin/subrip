@@ -58,7 +58,7 @@ impl<'src_buf> Display for Entry<'src_buf> {
    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
       write![
          f,
-         "{} ---> {}\n{}",
+         "{} --> {}\n{}",
          self.start,
          self.end,
          self.lines.join("\n")
