@@ -87,7 +87,7 @@ impl<'src_buf> Display for Subtitles<'src_buf> {
             .entries
             .iter()
             .enumerate()
-            .map(|(i, entry)| format!["{i}\n{entry}"])
+            .map(|(i, entry)| format!["{}\n{entry}", i + 1])
             .collect::<Vec<String>>()
             .join("\n\n")
       ]
